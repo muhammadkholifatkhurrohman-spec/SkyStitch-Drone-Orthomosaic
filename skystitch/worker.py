@@ -7,7 +7,7 @@ for hundreds of photos). Progress & log text are sent to the dialog via
 Qt signals.
 """
 
-from qgis.core import QgsTask, Qgis
+from qgis.core import QgsTask
 from qgis.PyQt.QtCore import pyqtSignal
 
 from .pipeline.core import run_pipeline, PipelineError, PipelineCanceled
