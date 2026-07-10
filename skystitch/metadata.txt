@@ -1,0 +1,26 @@
+[general]
+name=SkyStitch - Drone Orthomosaic
+qgisMinimumVersion=3.16
+description=The SkyStitch plugin allows for the stitching of raw drone photos into a single georeferenced orthomosaic, directly inside QGIS, providing tools for GPS-based alignment, feature matching and GeoTIFF export.
+
+version=1.0
+author=Muhammad Kholifatkhur Rohman
+email=muhammadkholifatkhurrohman@gmail.com
+
+license=GPL-2.0-or-later
+
+about=Developed by Muhammad Kholifatkhur Rohman, the SkyStitch plugin allows for turning a folder of raw drone photos (JPG with GPS EXIF data) into one seamless, georeferenced orthomosaic (GeoTIFF), directly inside QGIS. It reads the GPS location and camera parameters from each photo, automatically matches ground features between overlapping photos using SIFT, aligns and fine-tunes the fit using the real GPS coordinates from the flight, then blends everything into one map and loads it straight onto the QGIS canvas -- no need for WebODM, Pix4D, DroneDeploy, or Metashape. Photos need GPS data and should overlap by at least 60-70%% with their neighbors. Best suited for quick previews, small-to-medium survey sites, and relatively flat terrain; for hilly terrain, very large areas, or survey-grade accuracy, a dedicated tool such as WebODM, Pix4D, DroneDeploy, or Metashape is still recommended. This plugin requires the installation of OpenCV, exifread, Rasterio, PyProj, SciPy, and Pillow into QGIS's own Python (step-by-step instructions are in README.md, included in the plugin folder). For more information please visit https://github.com/muhammadkholifatkhurrohman-spec/SkyStitch-Drone-Orthomosaic .
+
+tracker=https://github.com/muhammadkholifatkhurrohman-spec/SkyStitch-Drone-Orthomosaic/issues
+repository=https://github.com/muhammadkholifatkhurrohman-spec/SkyStitch-Drone-Orthomosaic
+homepage=https://github.com/muhammadkholifatkhurrohman-spec/SkyStitch-Drone-Orthomosaic
+
+category=Raster
+icon=icon.png
+
+tags=drone,orthomosaic,photogrammetry,mosaic,uav,geotiff,mapping,stitching
+
+experimental=True
+deprecated=False
+server=False
+hasProcessingProvider=no
