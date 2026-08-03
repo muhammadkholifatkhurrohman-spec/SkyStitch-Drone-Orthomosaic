@@ -51,7 +51,10 @@ before creating any pyproj object) anywhere in the plugin, and any code
 that opens/writes a raster with a CRS should do so inside `rasterio_env()`.
 """
 
+import logging
 import os
+
+_log = logging.getLogger(__name__)
 
 
 def _valid_proj_dir(path):
@@ -122,7 +125,16 @@ if _proj_dir:
 
         pyproj.datadir.set_data_dir(_proj_dir)
     except Exception:
-        pass
+        # Best-effort only: PROJ_DATA/PROJ_LIB were already set via
+        # os.environ above, which is enough for most cases (including the
+        # rasterio_env() context manager below, which doesn't depend on
+        # this call at all). This second call just additionally forces
+        # pyproj's own internal cache to match, so we don't want a failure
+        # here (e.g. an unexpected pyproj version without this API) to
+        # abort plugin startup. Logged at debug level so it's still
+        # discoverable if pyproj/rasterio CRS handling misbehaves later.
+        _log.debug("Failed to force pyproj data dir to '%s'", _proj_dir, exc_info=True)
+        _log.debug("pyproj.datadir.set_data_dir(%r) failed", _proj_dir, exc_info=True)
 
 if _gdal_dir:
     os.environ["GDAL_DATA"] = _gdal_dir
